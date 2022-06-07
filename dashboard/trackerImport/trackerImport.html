@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../nodecgComponents/nodecgComponents.css">
+    <script src="../nodecgComponents/nodecgComponents.js"></script>
+</head>
+
+<body>
+    <style>
+        .input {
+            margin-bottom: 15px;
+        }
+
+        .errorText {
+            margin-top: 10px;
+            font-size: 16px;
+            color: red;
+            display: none;
+        }
+    </style>
+    <div class="input">
+        <input></input>
+        <label>Marathon Short</label>
+        <div class="inputBorder"></div>
+    </div>
+    <button onClick="sendInfo(this)"> Import Schedule Data</button>
+    <div class="errorText"></div>
+    <script>
+        function sendInfo(button) {
+            let input = document.querySelector('.input input');
+            document.querySelector('.errorText').style.display = 'none';
+            button.disabled = true;
+            input.disabled = true;
+            nodecg.sendMessage('importFromTracker', input.value, (error, result) => {
+                if (error) {
+                    document.querySelector('.errorText').innerHTML = result.error;
+                    document.querySelector('.errorText').style.display = 'inherit';
+                    button.disabled = false;
+                    input.disabled = false;
+                    return;
+                }
+                button.disabled = false;
+                input.disabled = false;
+                document.querySelector('.errorText').style.display = 'none';
+                return;
+            });
+        }
+    </script>
+</body>
+
+</html>
