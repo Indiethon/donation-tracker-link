@@ -1,5 +1,5 @@
 {
-  "name": "donation-tracker-link",
+  "name": "nodecg-tracker-link",
   "version": "1.0.0",
   "description": "Links the donation-tracker with NodeCG and updates information between the 2.",
   "main": "extension.js",
